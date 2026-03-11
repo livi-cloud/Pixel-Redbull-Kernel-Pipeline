@@ -108,7 +108,6 @@ jobs:
           cp -fv "$RAMDISK_PATH/vendor_ramdisk" "$CONFIG/"
           
           cd "$CONFIG"
-          ls -la
           
       #     # Initialize and sync kernel source
       #     echo "Initializing and syncing kernel source..."
@@ -163,13 +162,14 @@ jobs:
       # #     cd ..
       # #     patch -p1 --fuzz=3 < 50_add_susfs_in_kernel-4.19.patch || true
 
-      # - name: Apply KSU Hooks
-      #   run: |
-      #     echo "Changing to configuration directory: $CONFIG..."
-      #     cd "$CONFIG/private/msm-google/"
-      #     # Apply additional patch
-      #     cp ../../../kernel_patches/ksu_hooks_4.19.patch ./
-      #     patch -p1 --fuzz=3 < ./ksu_hooks_4.19.patch
+      - name: Apply KSU Hooks
+        run: |
+          echo "Changing to configuration directory: $CONFIG..."
+          cd "$CONFIG/private/msm-google/"
+          # Apply additional patch
+          cat ../../kernel_patches/ksu_hooks_4.19.patch
+          # cp ../../kernel_patches/ksu_hooks_4.19.patch ./
+          # patch -p1 --fuzz=3 < ./ksu_hooks_4.19.patch
 
       # - name: Add SUSFS Configuration Settings
       #   run: |
