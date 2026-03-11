@@ -39,7 +39,7 @@ jobs:
       - name: Set environment
         run: |
           # Set CONFIG dynamically based on matrix values
-          CONFIG="redbull"
+          CONFIG="redfin"
           BRANCH=${{ github.event.inputs.android_version }}
           
           # Set CONFIG as an environment variable for future steps
