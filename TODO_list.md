@@ -1,0 +1,9 @@
+- [x] Remove AnyKernel
+- Up-to-date KernelSU
+- Remove SUSFS
+- Refactor build
+    - Translate to English
+    - Input branch as variable
+    - Use vendor_ramdisk and ramdisk file by structure
+    - Re-structure result file
+    - Change build name
