@@ -200,9 +200,10 @@ jobs:
           
           # Copy SUSFS patches
           # Check env $KERNEL_ROOT
-          if [ "$KERNEL_ROOT" == "kernelSU" ]; then
+          echo "KERNEL_ROOT is: $KERNEL_ROOT"
+          if [ "$KERNEL_ROOT" = "kernelSU" ]; then
             cp ../../../susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./KernelSU/
-          elif [ "$KERNEL_ROOT" == "kernelSU-next" ]; then
+          elif [ "$KERNEL_ROOT" = "kernelSU-next" ]; then
             cp ../../../susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./KernelSU-Next/
           fi
           cp ../../../susfs4ksu/kernel_patches/50_add_susfs_in_kernel-4.19.patch ./
