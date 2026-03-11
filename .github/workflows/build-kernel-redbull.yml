@@ -10,6 +10,7 @@ on:
         default: 'android-msm-redbull-4.19-android14'
         options:
           - android-msm-redbull-4.19-android14
+
       susfs_enable:
         type: choice
         description: 'Enable SUSFS'
@@ -239,4 +240,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: fastboot.zip
-          path: "redfin/fastboot_files/fastboot.zip"
+          path: "$CONFIG/fastboot_files/fastboot.zip"
