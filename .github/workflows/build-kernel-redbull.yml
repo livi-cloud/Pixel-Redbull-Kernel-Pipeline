@@ -35,7 +35,7 @@ on:
         default: 'kernelSU'
         options:
           - 'kernelSU'
-          - 'kernelSU-next'
+          # - 'kernelSU-next'
           # - 'SukiSU'
 
 jobs:
@@ -268,7 +268,18 @@ jobs:
           echo "CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG=y" >> ./arch/arm64/configs/redbull-gki_defconfig
           echo "CONFIG_KSU_SUSFS_OPEN_REDIRECT=y" >> ./arch/arm64/configs/redbull-gki_defconfig
           echo "CONFIG_KSU_SUSFS_SUS_SU=n" >> ./arch/arm64/configs/redbull-gki_defconfig
+      
+      - name: Add Configuration Patch
+        run: |
+          echo "Changing to configuration directory: $CONFIG..."
+          cd "$CONFIG/private/msm-google/"
           
+          echo "Adding configuration settings to redbull-gki_defconfig..."
+          
+          # Enable tracepoints configuration
+          echo "CONFIG_TRACEPOINTS=y" >> ./arch/arm64/configs/redbull-gki_defconfig
+          echo "CONFIG_HAVE_SYSCALL_TRACEPOINTS=y" >> ./arch/arm64/configs/redbull-gki_defconfig
+
       # - name: Add Configuration Settings KSU
       #   if: ${{ github.event.inputs.kernel_root == 'SukiSU' }}
       #   run: |
