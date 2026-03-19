@@ -205,7 +205,7 @@ jobs:
             cp ../../../susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./KernelSU/
             cd KernelSU/
           elif [ "$KERNEL_ROOT" = "kernelSU-next" ]; then
-            cp ../../../susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./KernelSU-Next/
+            cp ../../../kernel_patches/susfs_v1.5.5_ksun_v1.1.1_hooks.patch ./KernelSU-Next/
             cd KernelSU-Next/ 
           fi
           patch -p1 --fuzz=3 < 10_enable_susfs_for_ksu.patch || true
