@@ -1,0 +1,22 @@
+- name: Sync kernel source
+  if: steps.cache-source.outputs.cache-hit != 'true'
+  run: |
+    mkdir -p kernel_src && cd kernel_src
+    repo init \
+      -u https://android.googlesource.com/kernel/manifest \
+      -b android-gs-caimito-6.1-android16 \
+      --depth=1
+    repo sync -j$(nproc) --no-tags
+
+# 删掉 Checkout exact commit 这个 step
+
+- name: Show source tree  # 临时加，确认目录结构
+  run: |
+    ls kernel_src/
+    ls kernel_src/common 2>/dev/null || echo "no common dir"
+
+- name: Integrate KernelSU v3.2.0
+  run: |
+    cd kernel_src/common  # 这里的路径待确认
+    curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" \
+      | bash -s v3.2.0
